@@ -100,6 +100,6 @@ node() {
   }
 // Add a stage to promote your API to production:
   stage("Promote to production") {
-    service.promoteToProduction()
+  //  service.promoteToProduction()
   }
 }
