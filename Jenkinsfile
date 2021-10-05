@@ -16,6 +16,9 @@ def service = null
 
 // Create the ThreescaleService with all the relevant information:
 node() {
+    stage("checkout") {
+        checkout scm
+    }
   stage("Prepare") {
     service = toolbox.prepareThreescaleService(
         openapi: [ filename: "openapi.yaml" ],
