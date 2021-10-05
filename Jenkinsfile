@@ -88,7 +88,7 @@ node() {
 
     sh """set -e
     echo "Public Staging Base URL is {proxy.sandbox_endpoint}"
-    echo "userkey is {userkey}"
+    echo "userkey is ${userkey}"
     curl ${params.PRIVATE_URL}/hello
     """
 
