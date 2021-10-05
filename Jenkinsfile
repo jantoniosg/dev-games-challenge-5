@@ -1,6 +1,8 @@
 #!groovy
 
+// https://github.com/rh-integration/3scale-toolbox-jenkins-samples/blob/master/saas-usecase-apikey/Jenkinsfile
 // https://github.com/rh-integration/3scale-toolbox-jenkins
+// https://github.com/rh-integration/3scale-toolbox-jenkins-samples/blob/master/SETUP.md
 // Jenkins Shared Library to call the 3scale toolbox
 // This Jenkins Shared Library helps pipelines writers to call the 3scale toolbox.
 //
@@ -21,23 +23,25 @@ node() {
     }
   stage("Prepare") {
     service = toolbox.prepareThreescaleService(
-        openapi: [ filename: "openapi.yaml" ],
-        environment: [ baseSystemName: "my_service" ],
-        toolbox: [ openshiftProject: "toolbox",
-                   destination: "3scale-tenant",
-                   secretName: "3scale-toolbox" ],
+        openapi: [filename: "openapi.yaml"],
+        environment: [ baseSystemName: "dev-games-challenge_api",
+                       privateBaseUrl: params.PRIVATE_BASE_URL ],
+        toolbox: [ openshiftProject: params.OCP_PROJECT,
+                   destination: params.INSTANCE,
+                   image: "quay.io/redhat/3scale-toolbox:master", // TODO: remove me once the final image is released
+                   secretName: params.SECRET_NAME],
         service: [:],
         applications: [
-            [ name: "dev-games-challenge-5", description: "This is used for Developer Games", plan: "test", account: "<CHANGE_ME>" ]
+            [ name: "my-test-app", description: "This is used for tests", plan: "test", account: "17067201" ]
         ],
         applicationPlans: [
           [ systemName: "test", name: "Test", defaultPlan: true, published: true ],
           [ systemName: "silver", name: "Silver" ],
-          [ artefactFile: "https://raw.githubusercontent.com/redhatHameed/API-Lifecycle-Mockup/master/testcase-01/plan.yaml"],
+          [ systemName: "gold", name: "Gold" ],
         ]
     )
 
-    echo "toolbox version = " + service.toolbox.getToolboxVersion()
+    //echo "toolbox version = " + service.toolbox.getToolboxVersion()
   }
 
 // openapi.filename is the path to the file containing the OpenAPI Specification
@@ -46,36 +50,28 @@ node() {
 // toolbox.secretName is the name of the Kubernetes Secret containing the 3scale_toolbox configuration file
 // toolbox.destination is the name of the 3scale_toolbox remote
 // applicationPlans is a list of Application Plans to create, by using artefact yaml File or by providing application plan properties details.
-// Create the corresponding OpenShift project:
 
+// Create the corresponding OpenShift project:
 // oc new-project toolbox
 
 // Generate the toolbox configuration file and create the Kubernetes Secret:
-
 // 3scale remote add 3scale-tenant https://$TOKEN@$TENANT.3scale.net/
 // oc create secret generic 3scale-toolbox --from-file=$HOME/.3scalerc.yaml
 
 // Add a stage to provision the service in 3scale:
-
   stage("Import OpenAPI") {
     service.importOpenAPI()
     echo "Service with system_name ${service.environment.targetSystemName} created !"
   }
-
 // Add a stage to create the Application Plans:
-
   stage("Create an Application Plan") {
     service.applyApplicationPlans()
   }
-
 // Add a global variable and a stage to create the test Application:
-
   stage("Create an Application") {
     service.applyApplication()
   }
-
 // Add a stage to run your integration tests:
-
   stage("Run integration tests") {
     // To run the integration tests when using APIcast SaaS instances, we need
     // to fetch the proxy definition to extract the staging public url
@@ -86,9 +82,7 @@ node() {
     curl -f -w "Goodbye: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/api/beer/goodbye -H 'api-key: ${service.applications[0].userkey}'
     """
   }
-
 // Add a stage to promote your API to production:
-
   stage("Promote to production") {
     service.promoteToProduction()
   }
