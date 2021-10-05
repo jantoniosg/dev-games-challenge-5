@@ -23,16 +23,17 @@ node() {
     }
   stage("Prepare") {
     service = toolbox.prepareThreescaleService(
-        openapi: [filename: "openapi.yaml"],
-        environment: [ //baseSystemName: "dev-games-challenge_api",
+        openapi: [filename: params.PARAMS_OPENAPI_SPEC],
+        environment: [ baseSystemName: params.APP_NAME,
                        privateBaseUrl: params.PRIVATE_BASE_URL ],
         toolbox: [ openshiftProject: params.OCP_PROJECT,
                    destination: params.INSTANCE,
-                   image: "quay.io/redhat/3scale-toolbox:master", // TODO: remove me once the final image is released
+                   insecure: "yes",
+                   image: "quay.io/redhat/3scale-toolbox:v0.17.1",
                    secretName: params.SECRET_NAME],
         service: [:],
         applications: [
-            [ name: params.APP_NAME, description: "This is used for tests", plan: "test", account: "17067201" ]
+            [ name: "my-test-app", description: "This is used for tests", plan: "test", account: 85 ]
         ],
         applicationPlans: [
           [ systemName: "test", name: "Test", defaultPlan: true, published: true ],
