@@ -18,7 +18,7 @@ def service = null
 node() {
   stage("Prepare") {
     service = toolbox.prepareThreescaleService(
-        openapi: [ filename: "openapi" ],
+        openapi: [ filename: "openapi.yaml" ],
         environment: [ baseSystemName: "my_service" ],
         toolbox: [ openshiftProject: "toolbox",
                    destination: "3scale-tenant",
