@@ -86,7 +86,7 @@ node() {
   //  def proxy = service.readProxy("sandbox")
 
     sh """set -e +x
-    curl ${params.PRIVATE_URL}/hello"
+    curl ${params.PRIVATE_URL}/hello
     """
 
 //    sh """set -e +x
