@@ -24,7 +24,7 @@ node() {
   stage("Prepare") {
     service = toolbox.prepareThreescaleService(
         openapi: [filename: "openapi.yaml"],
-        environment: [ baseSystemName: "dev-games-challenge_api",
+        environment: [ //baseSystemName: "dev-games-challenge_api",
                        privateBaseUrl: params.PRIVATE_BASE_URL ],
         toolbox: [ openshiftProject: params.OCP_PROJECT,
                    destination: params.INSTANCE,
@@ -32,7 +32,7 @@ node() {
                    secretName: params.SECRET_NAME],
         service: [:],
         applications: [
-            [ name: "my-test-app", description: "This is used for tests", plan: "test", account: "17067201" ]
+            [ name: params.APP_NAME, description: "This is used for tests", plan: "test", account: "17067201" ]
         ],
         applicationPlans: [
           [ systemName: "test", name: "Test", defaultPlan: true, published: true ],
@@ -41,7 +41,14 @@ node() {
         ]
     )
 
-    //echo "toolbox version = " + service.toolbox.getToolboxVersion()
+    echo "toolbox version = " + service.toolbox.getToolboxVersion()
+
+//     echo "toolbox version = " + service.toolbox.getToolboxVersion()
+//     echo "toolbox version = " + service.toolbox.getToolboxVersion()
+//     echo "toolbox version = " + service.toolbox.getToolboxVersion()
+//     echo "toolbox version = " + service.toolbox.getToolboxVersion()
+//     echo "toolbox version = " + service.toolbox.getToolboxVersion()
+//     echo "toolbox version = " + service.toolbox.getToolboxVersion()
   }
 
 // openapi.filename is the path to the file containing the OpenAPI Specification
