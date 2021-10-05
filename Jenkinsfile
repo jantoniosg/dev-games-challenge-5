@@ -83,7 +83,7 @@ node() {
   stage("Run integration tests") {
     // To run the integration tests when using APIcast SaaS instances, we need
     // to fetch the proxy definition to extract the staging public url
-    //def proxy = service.readProxy("sandbox")
+    def proxy = service.readProxy("sandbox1428")
     def userkey = service.applications[0].userkey
 
     sh """set -e
@@ -100,6 +100,6 @@ node() {
   }
 // Add a stage to promote your API to production:
   stage("Promote to production") {
-  //  service.promoteToProduction()
+    service.promoteToProduction()
   }
 }
