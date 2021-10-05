@@ -80,16 +80,16 @@ node() {
     service.applyApplication()
   }
 // Add a stage to run your integration tests:
-  stage("Run integration tests") {
+  //stage("Run integration tests") {
     // To run the integration tests when using APIcast SaaS instances, we need
     // to fetch the proxy definition to extract the staging public url
-    def proxy = service.readProxy("sandbox")
-    sh """set -e +x
-    curl -f -w "Hello: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello -H 'api-key: ${service.applications[0].userkey}'
-    curl -f -w "HelloName: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello/devGames -H 'api-key: ${service.applications[0].userkey}'
-    curl -f -w "Goodbye: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/api/beer/goodbye -H 'api-key: ${service.applications[0].userkey}'
-    """
-  }
+  //  def proxy = service.readProxy("sandbox")
+  //  sh """set -e +x
+  //  curl -f -w "Hello: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello -H 'api-key: ${service.applications[0].userkey}'
+  //  curl -f -w "HelloName: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello/devGames -H 'api-key: ${service.applications[0].userkey}'
+  //  curl -f -w "Goodbye: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/api/beer/goodbye -H 'api-key: ${service.applications[0].userkey}'
+  //  """
+  //}
 // Add a stage to promote your API to production:
   stage("Promote to production") {
     service.promoteToProduction()
