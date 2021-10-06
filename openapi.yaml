@@ -56,7 +56,7 @@ components:
     schemas:
         item:
             title: Root Type for Items
-            description: ""
+            description: Items desc
             required:
                 - id
                 - name
@@ -74,10 +74,8 @@ components:
                 name: Test
                 description: Test description
     securitySchemes:
-        openId:
-            openIdConnectUrl: http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/.well-known/openid-configuration
-            type: openIdConnect
-            description: openid connect for 3scale
-security:
-    - openId:
-          - openid
+        api-key:
+            type: apiKey
+            description: api key for 3scale
+            name: api-key
+            in: header
