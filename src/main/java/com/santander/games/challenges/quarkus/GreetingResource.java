@@ -20,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 //                in = SecuritySchemeIn.HEADER) //,
         @SecurityScheme(securitySchemeName = "openIdConnectUrl",
                 type = SecuritySchemeType.OPENIDCONNECT,
+                apiKeyName = "openid",
                 openIdConnectUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
                         ".com/auth/realms/user11/.well-known/openid-configuration")}
 )
