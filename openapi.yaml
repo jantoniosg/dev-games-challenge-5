@@ -13,8 +13,6 @@ paths:
             text/plain:
               schema:
                 type: string
-      security:
-        - api-key: []
   /goodbye/{name}:
     get:
       parameters:
@@ -30,8 +28,6 @@ paths:
             text/plain:
               schema:
                 type: string
-      security:
-        - api-key: []
   /hello:
     get:
       responses:
@@ -41,8 +37,6 @@ paths:
             text/plain:
               schema:
                 type: string
-      security:
-        - api-key: []
   /hello/{name}:
     get:
       parameters:
@@ -58,11 +52,11 @@ paths:
             text/plain:
               schema:
                 type: string
-      security:
-        - api-key: []
 components:
   securitySchemes:
     api_key:
       type: apiKey
       name: api_key
       in: header
+  security:
+     - api-key: []
