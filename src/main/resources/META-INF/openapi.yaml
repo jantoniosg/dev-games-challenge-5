@@ -1,0 +1,89 @@
+---
+openapi: 3.0.3
+info:
+  title: dev-games-challenge-5 API
+  version: 1.0.0-SNAPSHOT
+paths:
+  /goodbye:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      security:
+        - api-key: []
+  /goodbye/{name}:
+    get:
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      security:
+        - api-key: []
+  /hello:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      security:
+        - api-key: []
+  /hello/{name}:
+    get:
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      security:
+        - api-key: []
+components:
+  schemas:
+    item:
+      title: Root Type for Items
+      description: Items desc
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+      example:
+        id: 1
+        name: Test
+        description: Test description
+  securitySchemes:
+    api-key:
+      type: apiKey
+      description: api-key for 3scale
+      name: api-key
+      in: header
