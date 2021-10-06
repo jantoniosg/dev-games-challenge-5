@@ -52,3 +52,32 @@ paths:
             text/plain:
               schema:
                 type: string
+components:
+    schemas:
+        item:
+            title: Root Type for Items
+            description: ""
+            required:
+                - id
+                - name
+            type: object
+            properties:
+                id:
+                    format: int32
+                    type: integer
+                name:
+                    type: string
+                description:
+                    type: string
+            example:
+                id: 1
+                name: Test
+                description: Test description
+    securitySchemes:
+        openId:
+            openIdConnectUrl: http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/.well-known/openid-configuration
+            type: openIdConnect
+            description: openid connect for 3scale
+security:
+    - openId:
+          - openid
