@@ -76,7 +76,7 @@ components:
         description: Test description
   securitySchemes:
     openId:
-      type: openIdConnect
+      type: oauth2
       openIdConnectUrl: http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/.well-known/openid-configuration
 
 # Global security
