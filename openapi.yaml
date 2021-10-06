@@ -1,8 +1,9 @@
 ---
 openapi: 3.0.2
 info:
-  title: dev-games-challenge-5 API
-  version: 1.0.0-SNAPSHOT
+  title: greet
+  version: 1.0.0
+  description: description
 paths:
   /goodbye:
     get:
