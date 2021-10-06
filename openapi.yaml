@@ -53,10 +53,31 @@ paths:
               schema:
                 type: string
 components:
+  schemas:
+    item:
+      title: Root Type for Items
+      description: ""
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+      example:
+        id: 1
+        name: Test
+        description: Test description
   securitySchemes:
-    api_key:
+    api-key:
       type: apiKey
-      name: api_key
+      description: api key for 3scale
+      name: api-key
       in: header
 security:
   -
