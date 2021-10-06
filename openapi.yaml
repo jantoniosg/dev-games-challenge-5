@@ -13,8 +13,6 @@ paths:
             text/plain:
               schema:
                 type: string
-      security:
-        - api-key: []
   /goodbye/{name}:
     get:
       parameters:
@@ -30,8 +28,6 @@ paths:
             text/plain:
               schema:
                 type: string
-      security:
-        - api-key: []
   /hello:
     get:
       responses:
@@ -41,8 +37,6 @@ paths:
             text/plain:
               schema:
                 type: string
-      security:
-        - api-key: []
   /hello/{name}:
     get:
       parameters:
@@ -58,32 +52,12 @@ paths:
             text/plain:
               schema:
                 type: string
-      security:
-        - api-key: []
 components:
-  schemas:
-    item:
-      title: Root Type for Items
-      description: Items desc
-      required:
-        - id
-        - name
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-      example:
-        id: 1
-        name: Test
-        description: Test description
   securitySchemes:
-    api-key:
+    api_key:
       type: apiKey
-      description: api-key for 3scale
-      name: api-key
+      name: api_key
       in: header
+    openIdConnectUrl:
+      type: openIdConnect
+      openIdConnectUrl: http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/.well-known/openid-configuration
