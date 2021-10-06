@@ -1,0 +1,83 @@
+---
+openapi: 3.0.2
+info:
+  title: greet
+  version: 1.0.0
+  description: description
+paths:
+  /goodbye:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /goodbye/{name}:
+    get:
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /hello:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /hello/{name}:
+    get:
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    item:
+      title: Root Type for Items
+      description: ""
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+      example:
+        id: 1
+        name: Test
+        description: Test description
+  securitySchemes:
+    openIdConnectUrl:
+      type: openIdConnect
+      openIdConnectUrl: http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/.well-known/openid-configuration
+security:
+  -
+    openid: []
