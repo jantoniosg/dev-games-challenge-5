@@ -2,7 +2,6 @@ package com.santander.games.challenges.quarkus;
 
 import org.eclipse.microprofile.openapi.annotations.enums.SecuritySchemeIn;
 import org.eclipse.microprofile.openapi.annotations.enums.SecuritySchemeType;
-import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.security.SecuritySchemes;
 
@@ -18,13 +17,14 @@ import javax.ws.rs.core.MediaType;
         @SecurityScheme(securitySchemeName = "api_key",
                 type = SecuritySchemeType.APIKEY,
                 apiKeyName = "api_key",
-                in = SecuritySchemeIn.HEADER),
-        @SecurityScheme(securitySchemeName = "openIdConnectUrl",
-                type = SecuritySchemeType.OPENIDCONNECT,
-                openIdConnectUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
-                        ".com/auth/realms/user11/.well-known/openid-configuration")}
+                in = SecuritySchemeIn.HEADER) //,
+//        @SecurityScheme(securitySchemeName = "openIdConnectUrl",
+//                type = SecuritySchemeType.OPENIDCONNECT,
+//                openIdConnectUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
+//                        ".com/auth/realms/user11/.well-known/openid-configuration")
+}
 )
-@SecurityRequirement(name = "api-key")
+//@SecurityRequirement(name = "api-key")
 public class GreetingResource {
 
   @GET
