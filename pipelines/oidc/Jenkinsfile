@@ -68,8 +68,8 @@ node() {
     curl -sLfk https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o /tmp/jq
     chmod 755 /tmp/jq
     TOKEN="\$(/tmp/jq -r .access_token response.json)"
+    TOKEN="Shared_secret_sent_from_proxy_to_API_backend_9a36b337fb104100"
     echo "Received access_token '\$TOKEN'"
-    echo curl -sfk -w "gethello: %{http_code}\n" -o /dev/null ${proxy.sandbox_endpoint}/hello -H "Authorization: Bearer \$TOKEN"
     curl -sfk -w "gethello: %{http_code}\n" -o /dev/null ${proxy.sandbox_endpoint}/hello -H "Authorization: Bearer \$TOKEN"
     """
 
