@@ -9,8 +9,8 @@
 // First, reference this library from your Jenkins pipeline by adding to the beginning of your pipeline:
 
 library identifier: '3scale-toolbox-jenkins@master',
-        retriever: modernSCM([$class: 'GitSCMSource',
-                              remote: 'https://github.com/rh-integration/3scale-toolbox-jenkins.git'])
+    retriever: modernSCM([$class: 'GitSCMSource',
+                          remote: 'https://github.com/rh-integration/3scale-toolbox-jenkins.git'])
 // Declare a global variable that will hold the ThreescaleService object so that you can use it from the different stages of your pipeline.
 
 def service = null
@@ -22,23 +22,23 @@ node() {
     }
     stage("Prepare") {
         service = toolbox.prepareThreescaleService(
-                openapi: [filename: params.PARAMS_OPENAPI_SPEC],
-                environment: [baseSystemName: params.APP_NAME,
-                              privateBaseUrl: params.PRIVATE_URL],
-                toolbox: [openshiftProject: params.OCP_PROJECT,
-                          destination     : params.INSTANCE,
-                          insecure        : "yes",
-                          image           : "quay.io/redhat/3scale-toolbox:v0.17.1",
-                          secretName      : params.SECRET_NAME],
-                service: [:],
-                applications: [
-                        [name: "my-test-app", description: "This is used for tests", plan: "test", account: params.DEVELOPER_ACCOUNT_ID]
-                ],
-                applicationPlans: [
-                        [systemName: "test", name: "Test", defaultPlan: true, published: true],
-                        [systemName: "silver", name: "Silver"],
-                        [systemName: "gold", name: "Gold"],
-                ]
+            openapi: [filename: params.PARAMS_OPENAPI_SPEC],
+            environment: [baseSystemName: params.APP_NAME,
+                          privateBaseUrl: params.PRIVATE_URL],
+            toolbox: [openshiftProject: params.OCP_PROJECT,
+                      destination     : params.INSTANCE,
+                      insecure        : "yes",
+                      image           : "quay.io/redhat/3scale-toolbox:v0.17.1",
+                      secretName      : params.SECRET_NAME],
+            service: [:],
+            applications: [
+                [name: "my-test-app", description: "This is used for tests", plan: "test", account: 53]
+            ],
+            applicationPlans: [
+                [systemName: "test", name: "Test", defaultPlan: true, published: true],
+                [systemName: "silver", name: "Silver"],
+                [systemName: "gold", name: "Gold"],
+            ]
         )
 
         echo "toolbox version = " + service.toolbox.getToolboxVersion()
@@ -83,9 +83,10 @@ node() {
     echo "userkey is ${userkey}"
     curl -f -w "gethello: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello -H 'api-key: ${service.applications[0].userkey}'
     curl -f -w "gethelloname: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello/devGames -H 'api-key: ${service.applications[0].userkey}'
-    curl -f -w "getgoodbye: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/goodbye -H 'api-key: ${service.applications[0].userkey}'
     curl -f -w "getgoodbyename: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/goodbye/devGames -H 'api-key: ${service.applications[0].userkey}'
     """
+
+    // curl -f -w "getgoodbye: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/goodbye -H 'api-key: ${service.applications[0].userkey}'
     }
 // Add a stage to promote your API to production:
     stage("Promote to production") {
