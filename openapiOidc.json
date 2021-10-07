@@ -121,7 +121,7 @@
       }
     },
     "securitySchemes": {
-      "Oauth2": {
+      "oauth2": {
         "flows": null,
         "authorizationCode": null,
         "authorizationUrl": "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/protocol/openid-connect/auth",
@@ -133,7 +133,7 @@
   },
   "security": [
     {
-      "Oauth2": []
+      "oauth2": []
     }
   ]
 }
