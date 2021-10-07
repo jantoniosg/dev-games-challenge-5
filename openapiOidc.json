@@ -32,31 +32,26 @@
         "summary": "Show hello with a given name",
         "description": "Show hello with a given name",
         "operationId": "GetHelloName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "items": {
+                "$ref": "#/definitions/Hello"
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "name",
             "in": "path",
+            "description": "Given Name",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string",
-                  "items": {
-                    "$ref": "#/definitions/Hello"
-                  }
-                }
-              }
-            }
-          }
-        }
+        ]
       }
     },
     "/goodbye": {
