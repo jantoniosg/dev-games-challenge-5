@@ -19,11 +19,9 @@ def service = null
 node() {
     stage("checkout") {
         checkout scm
-    }
-    stage("Prepare") {
+    }    stage("Prepare") {
         service = toolbox.prepareThreescaleService(
-                openapi: [filename: params.PARAMS_OPENAPI_SPEC],
-                environment: [baseSystemName: params.APP_NAME,
+                openapi: [filename: params.PARAMS_OPENAPI_SPEC],                environment: [baseSystemName: params.APP_NAME,
                               privateBaseUrl: params.PRIVATE_URL],
                 toolbox: [openshiftProject: params.OCP_PROJECT,
                           destination     : params.INSTANCE,
