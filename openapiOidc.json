@@ -107,7 +107,7 @@
     "oidc": {
       "type": "oauth2",
       "flow": "application",
-      "tokenUrl": "https://_test_user11-admin.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/p/admin/user/access_tokens",
+      "tokenUrl": "https://user11-admin.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/p/admin/user/access_tokens",
       "scopes": {
         "openid": "Get an OpenID Connect token"
       }
