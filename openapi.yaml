@@ -75,11 +75,13 @@ components:
         name: Test
         description: Test description
   securitySchemes:
-    api-key:
-      type: apiKey
-      description: api key for 3scale
-      name: api-key
-      in: header
+    Oauth2:
+    flows:
+    authorizationCode:
+    authorizationUrl: http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/protocol/openid-connect/auth
+    tokenUrl: http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/protocol/openid-connect/token
+    refreshUrl: http://dev-games-challenge-5-user11.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com
+    type: oauth2
 security:
   -
-    api-key: []
+    Oauth2: []
