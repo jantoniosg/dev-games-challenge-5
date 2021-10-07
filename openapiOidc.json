@@ -104,7 +104,7 @@
     }
   },
   "securityDefinitions": {
-    "oidc": {
+    "oauth2": {
       "type": "oauth2",
       "flow": "authorizationCode",
       "tokenUrl": "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/userX/protocol/openid-connect/token",
@@ -117,7 +117,7 @@
   },
   "security": [
     {
-      "oidc": [
+      "oauth2": [
         "oauth2"
       ]
     }
