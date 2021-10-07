@@ -1,9 +1,7 @@
 package com.santander.games.challenges.quarkus;
 
 import org.eclipse.microprofile.openapi.annotations.enums.SecuritySchemeType;
-import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
-import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
-import org.eclipse.microprofile.openapi.annotations.security.SecuritySchemes;
+import org.eclipse.microprofile.openapi.annotations.security.*;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,13 +16,24 @@ import javax.ws.rs.core.MediaType;
 //                type = SecuritySchemeType.APIKEY,
 //                apiKeyName = "api_key",
 //                in = SecuritySchemeIn.HEADER) //,
-        @SecurityScheme(securitySchemeName = "openIdConnectUrl",
-                type = SecuritySchemeType.OPENIDCONNECT,
-                apiKeyName = "openid",
-                openIdConnectUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
-                        ".com/auth/realms/user11/.well-known/openid-configuration")}
+//        @SecurityScheme(securitySchemeName = "openIdConnectUrl",
+//                type = SecuritySchemeType.OPENIDCONNECT,
+//                apiKeyName = "openid",
+//                openIdConnectUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
+//                        ".com/auth/realms/user11/.well-known/openid-configuration"),
+        @SecurityScheme(securitySchemeName = "security_auth",
+                type = SecuritySchemeType.OAUTH2,
+                flows = @OAuthFlows(authorizationCode = @OAuthFlow(
+                        authorizationUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
+                                ".com/auth/realms/user11/protocol/openid-connect/auth"
+                        , tokenUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
+                        ".com/auth/realms/user11/protocol/openid-connect/token", refreshUrl = "http://dev-games" +
+                        "-challenge-5-user11.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com")
+                )
+        )
+}
 )
-@SecurityRequirement(name = "openIdConnectUrl")
+@SecurityRequirement(name = "security_auth")
 public class GreetingResource {
 
   @GET

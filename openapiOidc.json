@@ -103,22 +103,23 @@
       }
     }
   },
-  "securityDefinitions": {
+  "components": {
     "oauth2": {
-      "type": "oauth2",
-      "flow": "authorizationCode",
-      "tokenUrl": "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/userX/protocol/openid-connect/token",
-      "authorizationUrl": "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/userX/protocol/openid-connect/auth",
-      "refreshUrl": "http://dev-games-challenge-5-user11.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com",
-       "scopes": {
-        "openid": "Get an OpenID Connect token"
+      "security_auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/protocol/openid-connect/auth",
+            "tokenUrl": "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/protocol/openid-connect/token",
+            "refreshUrl": "http://dev-games-challenge-5-user11.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com"
+          }
+        }
       }
     }
   },
   "security": [
     {
       "oauth2": [
-        "oauth2"
       ]
     }
   ]
