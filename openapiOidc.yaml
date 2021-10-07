@@ -84,3 +84,12 @@ components:
           refreshUrl: http://dev-games-challenge-5-user11.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com
   security:
     - Oauth2: [ ]
+  securitySchemes:
+    api-key:
+      type: apiKey
+      description: api key for 3scale
+      name: api-key
+      in: header
+security:
+  -
+    api-key: []
