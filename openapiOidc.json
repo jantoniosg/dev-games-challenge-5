@@ -6,7 +6,7 @@
     "description": "description"
   },
   "paths": {
-    "hello": {
+    "/hello": {
       "get": {
         "responses": {
           "200": {
@@ -22,7 +22,7 @@
         }
       }
     },
-    "hello/{name}": {
+    "/hello/{name}": {
       "get": {
         "parameters": [
           {
@@ -48,7 +48,7 @@
         }
       }
     },
-    "goodbye": {
+    "/goodbye": {
       "get": {
         "responses": {
           "200": {
@@ -64,7 +64,7 @@
         }
       }
     },
-    "goodbye/{name}": {
+    "/goodbye/{name}": {
       "get": {
         "parameters": [
           {
