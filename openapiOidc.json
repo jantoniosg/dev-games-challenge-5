@@ -56,15 +56,17 @@
     },
     "/goodbye": {
       "get": {
+        "tags": [
+          "goodbye"
+        ],
+        "summary": "Get Goodbye",
+        "description": "Get Simple Goodbye",
+        "operationId": "GetGoodbye",
         "responses": {
           "200": {
             "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Goodbye"
             }
           }
         }
@@ -72,28 +74,32 @@
     },
     "/goodbye/{name}": {
       "get": {
+        "tags": [
+          "goodbye"
+        ],
+        "summary": "Show goodbye with a given name",
+        "description": "Show goodbye with a given name",
+        "operationId": "GetGoodbyeName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "items": {
+                "$ref": "#/definitions/Goodbye"
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "name",
             "in": "path",
+            "description": "Given Name",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
+        ]
       }
     }
   },
