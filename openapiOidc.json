@@ -26,6 +26,12 @@
     },
     "/hello/{name}": {
       "get": {
+        "tags": [
+          "hello"
+        ],
+        "summary": "Show hello with a given name",
+        "description": "Show hello with a given name",
+        "operationId": "GetHelloName",
         "parameters": [
           {
             "name": "name",
@@ -42,7 +48,10 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "string"
+                  "type": "string",
+                  "items": {
+                    "$ref": "#/definitions/Hello"
+                  }
                 }
               }
             }
