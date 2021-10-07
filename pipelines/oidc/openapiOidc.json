@@ -134,10 +134,9 @@
     },
     "securitySchemes": {
       "Oauth2": {
-        "type": "apiKey",
-        "description": "api key for 3scale",
-        "name": "Oauth2",
-        "in": "header"
+        "type": "oauth2",
+        "flow": "application",
+        "tokenUrl": "https://filled-later.dummy/token"
       }
     }
   },
