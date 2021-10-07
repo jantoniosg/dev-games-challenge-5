@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "description": "description"
   },
+  "basePath": "",
   "paths": {
     "/hello": {
       "get": {
