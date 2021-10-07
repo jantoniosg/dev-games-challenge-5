@@ -87,8 +87,6 @@ node() {
     curl -f -w "getgoodbye: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/goodbye -H 'api-key: ${service.applications[0].userkey}'
     curl -f -w "getgoodbyename: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/goodbye/devGames -H 'api-key: ${service.applications[0].userkey}'
     """
-
-    // curl -f -w "getgoodbye: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/goodbye -H 'api-key: ${service.applications[0].userkey}'
     }
 // Add a stage to promote your API to production:
     stage("Promote to production") {
