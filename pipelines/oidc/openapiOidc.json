@@ -133,17 +133,17 @@
       }
     },
     "securitySchemes": {
-      "api-key": {
+      "Oauth2": {
         "type": "apiKey",
         "description": "api key for 3scale",
-        "name": "api-key",
+        "name": "Oauth2",
         "in": "header"
       }
     }
   },
   "security": [
     {
-      "api-key": []
+      "Oauth2": []
     }
   ]
 }
