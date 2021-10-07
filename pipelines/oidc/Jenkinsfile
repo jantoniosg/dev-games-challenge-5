@@ -67,10 +67,10 @@ node() {
     chmod 755 /tmp/jq
     TOKEN="\$(/tmp/jq -r .access_token response.json)"
     echo "Received access_token '\$TOKEN'"
-    echo curl -sfk -w "gethello: %{http_code}\n" -o /dev/null ${proxy.sandbox_endpoint}/hello -H "Authorization: Bearer \$TOKEN"
-    echo curl -sfk -w "gethelloname: %{http_code}\n" -o /dev/null ${proxy.sandbox_endpoint}/hello/devGames -H "Authorization: Bearer \$TOKEN"
+    curl -sfk -w "gethello: %{http_code}\n" -o /dev/null ${proxy.sandbox_endpoint}/hello -H "Authorization: Bearer \$TOKEN"
+    curl -sfk -w "gethelloname: %{http_code}\n" -o /dev/null ${proxy.sandbox_endpoint}/hello/devGames -H "Authorization: Bearer \$TOKEN"
     curl -sfk -w "getgoodbye: %{http_code}\n" -o /dev/null ${proxy.sandbox_endpoint}/goodbye -H "Authorization: Bearer \$TOKEN"
-    echo curl -sfk -w "getgoodbyename: %{http_code}\n" -o /dev/null ${proxy.sandbox_endpoint}/goodbye/devGames -H "Authorization: Bearer \$TOKEN"
+    curl -sfk -w "getgoodbyename: %{http_code}\n" -o /dev/null ${proxy.sandbox_endpoint}/goodbye/devGames -H "Authorization: Bearer \$TOKEN"
     """
   }
 
