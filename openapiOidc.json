@@ -6,59 +6,19 @@
     "description": "description"
   },
   "paths": {
-    "/goodbye": {
-      "get": {
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/goodbye/{name}": {
-      "get": {
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/hello": {
       "get": {
+        "tags": [
+          "hello"
+        ],
+        "summary": "Get Hello",
+        "description": "Get Simple Hello",
+        "operationId": "GetHello",
         "responses": {
           "200": {
             "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Hello"
             }
           }
         }
@@ -66,73 +26,99 @@
     },
     "/hello/{name}": {
       "get": {
+        "tags": [
+          "hello"
+        ],
+        "summary": "Show hello with a given name",
+        "description": "Show hello with a given name",
+        "operationId": "GetHelloName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "items": {
+                "$ref": "#/definitions/Hello"
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "name",
             "in": "path",
+            "description": "Given Name",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
+        ]
+      }
+    },
+    "/goodbye": {
+      "get": {
+        "tags": [
+          "goodbye"
         ],
+        "summary": "Get Goodbye",
+        "description": "Get Simple Goodbye",
+        "operationId": "GetGoodbye",
         "responses": {
           "200": {
             "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Goodbye"
             }
           }
         }
+      }
+    },
+    "/goodbye/{name}": {
+      "get": {
+        "tags": [
+          "goodbye"
+        ],
+        "summary": "Show goodbye with a given name",
+        "description": "Show goodbye with a given name",
+        "operationId": "GetGoodbyeName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "items": {
+                "$ref": "#/definitions/Goodbye"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Given Name",
+            "required": true,
+            "type": "string"
+          }
+        ]
       }
     }
   },
   "components": {
-    "schemas": {
-      "item": {
-        "title": "Root Type for Items",
-        "description": "",
-        "required": [
-          "id",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "id": 1,
-          "name": "Test",
-          "description": "Test description"
-        }
-      }
-    },
     "securitySchemes": {
       "oidc": {
         "type": "oauth2",
-        "flow": "authorizationCode",
-        "tokenUrl": "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/protocol/openid-connect/token",
+        "flows": "authorizationCode",
         "authorizationUrl": "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/protocol/openid-connect/auth",
+        "tokenUrl": "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/auth/realms/user11/protocol/openid-connect/token",
         "refreshUrl": "http://dev-games-challenge-5-user11.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com"
       }
     }
   },
   "security": [
     {
-      "oidc": []
+      "oidc": [
+        "openid"
+      ]
     }
   ]
 }
