@@ -9,15 +9,17 @@
   "paths": {
     "/hello": {
       "get": {
+        "tags": [
+          "hello"
+        ],
+        "summary": "Get Hello",
+        "description": "Get Simple Hello",
+        "operationId": "GetHello",
         "responses": {
           "200": {
             "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Hello"
             }
           }
         }
