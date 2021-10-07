@@ -79,7 +79,7 @@ node() {
         def userkey = service.applications[0].userkey
 
         sh """set -e +x
-    echo "Public Staging Base URL is {proxy.sandbox_endpoint}"
+    echo "Public Staging Base URL is ${proxy.sandbox_endpoint}"
     echo "userkey is ${userkey}"
     curl -f -w "gethello: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello -H 'api-key: ${service.applications[0].userkey}'
     curl -f -w "gethelloname: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello/devGames -H 'api-key: ${service.applications[0].userkey}'
