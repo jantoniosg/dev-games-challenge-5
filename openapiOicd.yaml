@@ -1,0 +1,92 @@
+swagger: '2.0'
+info:
+  title: greet
+  version: 1.0.0
+  description: description
+paths:
+  /hello:
+    get:
+      tags:
+        - hello
+      summary: Get Hello
+      description: Get Simple Hello
+      operationId: GetHello
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Hello'
+  '/hello/{name}':
+    get:
+      tags:
+        - hello
+      summary: Show hello with a given name
+      description: Show hello with a given name
+      operationId: GetHelloName
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+            items:
+              $ref: '#/definitions/Hello'
+      parameters:
+        - name: name
+          in: path
+          description: Given Name
+          required: true
+          type: string
+  /goodbye:
+    get:
+      tags:
+        - goodbye
+      summary: Get Goodbye
+      description: Get Simple Goodbye
+      operationId: GetGoodbye
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Goodbye'
+  '/goodbye/{name}':
+    get:
+      tags:
+        - goodbye
+      summary: Show goodbye with a given name
+      description: Show goodbye with a given name
+      operationId: GetGoodbyeName
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+            items:
+              $ref: '#/definitions/Goodbye'
+      parameters:
+        - name: name
+          in: path
+          description: Given Name
+          required: true
+          type: string
+securityDefinitions:
+  oidc:
+    type: oauth2
+    flow: application
+    tokenUrl: >-
+      https://user11-admin.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/p/admin/user/access_tokens
+    scopes:
+      openid: Get an OpenID Connect token
+security:
+  - oidc:
+      - openid
+
+ecuritySchemes:
+Oauth2:
+flows:
+authorizationCode:
+authorizationUrl: http://ssoUrl/auth/realms/userX/protocol/openid-connect/auth
+tokenUrl: http://ssoUrl/auth/realms/userX/protocol/openid-connect/token
+refreshUrl: http://yourAppUrl
+type: oauth2
+security:
+  - Oauth2: []
