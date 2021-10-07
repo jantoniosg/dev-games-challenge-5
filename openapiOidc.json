@@ -1,0 +1,111 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "greet",
+    "version": "1.0.0",
+    "description": "description"
+  },
+  "paths": {
+    "/goodbye": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/goodbye/{name}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hello": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hello/{name}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oidc": {
+      "type": "oauth2",
+      "flow": "application",
+      "tokenUrl": "https://user11-admin.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com/p/admin/user/access_tokens",
+      "scopes": {
+        "openid": "Get an OpenID Connect token"
+      }
+    }
+  },
+  "security": [
+    {
+      "oidc": [
+        "openid"
+      ]
+    }
+  ]
+}
