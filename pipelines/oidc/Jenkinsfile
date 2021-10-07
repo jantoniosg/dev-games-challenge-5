@@ -66,6 +66,9 @@ node() {
     echo "client_secret=${clientSecret}"
     curl -sfk "${tokenEndpoint}" -d client_id="${clientId}" -d client_secret="${clientSecret}" -d scope=openid -d grant_type=client_credentials -o response.json
     curl -sLfk https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o /tmp/jq
+    echo "==============="
+    echo curl -sfk -w "gethello: %{http_code}\n" -o /dev/null ${proxy.sandbox_endpoint}/hello -H "Authorization: Bearer \$TOKEN"
+    echo "==============="
     chmod 755 /tmp/jq
     TOKEN="\$(/tmp/jq -r .access_token response.json)"
     echo "Received access_token '\$TOKEN'"
