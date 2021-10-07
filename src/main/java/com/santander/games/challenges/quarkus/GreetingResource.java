@@ -11,29 +11,29 @@ import javax.ws.rs.core.MediaType;
 
 @Path("")
 // https://github.com/smallrye/smallrye-open-api/issues/240
-@SecuritySchemes(value = {
-//        @SecurityScheme(securitySchemeName = "api_key",
-//                type = SecuritySchemeType.APIKEY,
-//                apiKeyName = "api_key",
-//                in = SecuritySchemeIn.HEADER) //,
-//        @SecurityScheme(securitySchemeName = "openIdConnectUrl",
-//                type = SecuritySchemeType.OPENIDCONNECT,
-//                apiKeyName = "openid",
-//                openIdConnectUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
-//                        ".com/auth/realms/user11/.well-known/openid-configuration"),
-        @SecurityScheme(securitySchemeName = "security_auth",
-                type = SecuritySchemeType.OAUTH2,
-                flows = @OAuthFlows(authorizationCode = @OAuthFlow(
-                        authorizationUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
-                                ".com/auth/realms/user11/protocol/openid-connect/auth"
-                        , tokenUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
-                        ".com/auth/realms/user11/protocol/openid-connect/token", refreshUrl = "http://dev-games" +
-                        "-challenge-5-user11.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com")
-                )
-        )
-}
-)
-@SecurityRequirement(name = "security_auth")
+//@SecuritySchemes(value = {
+////        @SecurityScheme(securitySchemeName = "api_key",
+////                type = SecuritySchemeType.APIKEY,
+////                apiKeyName = "api_key",
+////                in = SecuritySchemeIn.HEADER) //,
+////        @SecurityScheme(securitySchemeName = "openIdConnectUrl",
+////                type = SecuritySchemeType.OPENIDCONNECT,
+////                apiKeyName = "openid",
+////                openIdConnectUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
+////                        ".com/auth/realms/user11/.well-known/openid-configuration"),
+//        @SecurityScheme(securitySchemeName = "security_auth",
+//                type = SecuritySchemeType.OAUTH2,
+//                flows = @OAuthFlows(authorizationCode = @OAuthFlow(
+//                        authorizationUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
+//                                ".com/auth/realms/user11/protocol/openid-connect/auth"
+//                        , tokenUrl = "http://sso-rh-sso.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc" +
+//                        ".com/auth/realms/user11/protocol/openid-connect/token", refreshUrl = "http://dev-games" +
+//                        "-challenge-5-user11.apps.cluster-8fhm9.8fhm9.sandbox1428.opentlc.com")
+//                )
+//        )
+//}
+//)
+//@SecurityRequirement(name = "security_auth")
 public class GreetingResource {
 
   @GET
