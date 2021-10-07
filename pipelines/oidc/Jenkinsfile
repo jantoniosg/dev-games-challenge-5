@@ -56,7 +56,7 @@ node() {
 
   stage("Run integration tests") {
     def proxy = service.readProxy("sandbox")
-    def tokenEndpoint = getTokenEndpoint(params.OIDC_ISSUER_ENDPOINT)
+   // def tokenEndpoint = getTokenEndpoint(params.OIDC_ISSUER_ENDPOINT)
 //     def clientId = service.applications[0].clientId
 //     def clientSecret = service.applications[0].clientSecret
 //     sh """set -e
