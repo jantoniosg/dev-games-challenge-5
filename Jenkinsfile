@@ -82,10 +82,10 @@ node() {
     echo "Public Staging Base URL is ${proxy.sandbox_endpoint}"
     echo "userkey is ${userkey}"
     echo curl -f -w "gethello: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello -H 'api-key: ${service.applications[0].userkey}'
-    echo curl -f -w "gethello: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello -H 'api-key: ${service.applications[0].userkey}'
-    echo curl -f -w "gethelloname: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello/devGames -H 'api-key: ${service.applications[0].userkey}'
-    echo curl -f -w "getgoodbye: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/goodbye -H 'api-key: ${service.applications[0].userkey}'
-    echo curl -f -w "getgoodbyename: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/goodbye/devGames -H 'api-key: ${service.applications[0].userkey}'
+    curl -f -w "gethello: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello -H 'api-key: ${service.applications[0].userkey}'
+    curl -f -w "gethelloname: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/hello/devGames -H 'api-key: ${service.applications[0].userkey}'
+    curl -f -w "getgoodbye: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/goodbye -H 'api-key: ${service.applications[0].userkey}'
+    curl -f -w "getgoodbyename: %{http_code}\n" -o /dev/null -s ${proxy.sandbox_endpoint}/goodbye/devGames -H 'api-key: ${service.applications[0].userkey}'
     """
     }
 // Add a stage to promote your API to production:
